@@ -77,7 +77,7 @@ python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata
 python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d walnuts --gpu 0
 ```
 
-evaluate will generate a threshold file with will be used in predict.
+evaluate will generate a threshold file which will be used in predict.
 
 ## predict
 
