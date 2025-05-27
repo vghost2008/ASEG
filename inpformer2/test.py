@@ -21,9 +21,8 @@ from models import vit_encoder
 from models.uad import INP_Former
 from models.vision_transformer import Mlp, Aggregation_Block, Prototype_Block
 # from dataset import get_strong_transforms
-from dataset3 import get_strong_transforms_sig, MVTec2DatasetV2Fast
-from utils import get_gaussian_kernel, cal_anomaly_maps, min_max_norm
-from dataset import MVTec2Dataset
+from dataset3 import get_strong_transforms_sig
+from utils import get_gaussian_kernel, cal_anomaly_maps
 
 def set_model(args):
     setup_seed(1)
@@ -127,9 +126,9 @@ def save_tiff(anomaly_map, save_root, img_path, thresholded=None):
 
 
 def pred_images(args, model, thr:float=None):
-    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-    img_paths = get_image_path(osp.join(args.data_root, args.item, "test_private"))
-    img_paths.extend(get_image_path(osp.join(args.data_root, args.item, "test_private_mixed")))
+    device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
+    img_paths = get_image_path(osp.join(args.data_path, args.item, "test_private"))
+    img_paths.extend(get_image_path(osp.join(args.data_path, args.item, "test_private_mixed")))
 
     _, test_data_transform, _ = get_strong_transforms_sig(args.input_size, args.input_size)
     gaussian_kernel = get_gaussian_kernel(kernel_size=5, sigma=4).to(device)
@@ -145,28 +144,31 @@ def pred_images(args, model, thr:float=None):
             en, de = output[0], output[1]
             anomaly_map, _ = cal_anomaly_maps(en, de, img.shape[-1])
             anomaly_map = gaussian_kernel(anomaly_map)
-            save_dir = args.out_root + args.ver_idx
+            save_dir = args.save_dir + "_tiff" + "/predict"
             save_tiff(anomaly_map, save_dir, [img_path,], thresholded=thr)
 
     
 if __name__ == '__main__':
-    os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+    # os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--encoder', type=str, default='dinov2reg_vit_base_14') # 'dinov2reg_vit_small_14' or 'dinov2reg_vit_base_14' or 'dinov2reg_vit_large_14'
     parser.add_argument('--input_size', type=int, default=784)
     parser.add_argument('--INP_num', type=int, default=6)
-    parser.add_argument('--pretrained_model_path', type=str, default="work-dir/TUAD-Single-Class-v2")
-    parser.add_argument('--data_root', type=str, default='/home/zhangym/workspace/datasets/AnomalyDetectionDatasets/MVTecAD2')
-    parser.add_argument('--out_root', type=str, default='/home/zhangym/workspace-27/datasets/AnomalyDetectionDatasets/submission_folder_v')
-    parser.add_argument('--ver_idx', type=str, default='3')
+    parser.add_argument('--save_dir', type=str, default='./work-dir')
+    parser.add_argument('--pretrained_model_path', type=str, default="inpformer2")
+    parser.add_argument('--data_path', type=str, default='/path/to/MVTecAD2')
+    parser.add_argument('--item', type=str, default='can')
+    parser.add_argument('--gpu', type=str, default='0')
     args = parser.parse_args()
+
+    args.pretrained_model_path = osp.join(args.save_dir, args.pretrained_model_path)
 
     item_thrs = read_best_thr(args)
     print(item_thrs)
-
-    for name, thr in item_thrs.items():
-        print(f'========= process {name}: {thr}')
-        args.item = name
+    if args.item in item_thrs:
+        thr = item_thrs[args.item]
+        print(f'========= process {args.item}: {thr}')
         torch_model = set_model(args)
         pred_images(args, torch_model, thr=thr)
         del torch_model
+        

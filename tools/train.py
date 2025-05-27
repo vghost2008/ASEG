@@ -22,7 +22,11 @@ if __name__ == "__main__":
     dataset = args.dataset
     gpu = args.gpu
     if dataset in ['can','walnuts']:
-        pass
+        os.chdir("./inpformer2")
+        data_path = osp.join(datadir_root,"datasets")
+        cmd = f"python train.py --data_path {data_path} --save_dir {save_dir} --gpu {gpu} --item {dataset}"
+        print(f"command: {cmd}")
+        os.system(cmd)
     else:
         os.chdir("./glass2")
         data_path = osp.join(datadir_root,"datasets")
