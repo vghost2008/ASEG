@@ -2,8 +2,8 @@
 
 ## prepare dataset
 
-- download fg mask from 
-- download dtd data from 
+- download fg mask from [Download link](https://onebox.boe.com.cn/l/2FglwP) 提取码: yrij
+- download dtd data from [Download link](https://www.robots.ox.ac.uk/~vgg/data/dtd/)
 - make ***datadir_root*** directory
 - unpack dtd to ***datadir_root*** directory
 - unpack MVTEC AD2 dataset to ***datadir_root/datasets*** directory
