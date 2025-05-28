@@ -49,10 +49,10 @@ tree datadir_root
 
 usage python ./tools/train.py work_dir datadir_root -d dataset_name --gpu gpu_idx
 
--work_dir: directory to save checkpoint, log and other temporary files.
--datadir_root: the dataset directory.
--dataset_name: subdatasets name, for example can, fruit_jelly, et.
--gpu: gpu idx.
+- work_dir: directory to save checkpoint, log and other temporary files.
+- datadir_root: the dataset directory.
+- dataset_name: subdatasets name, for example can, fruit_jelly, et.
+- gpu: gpu idx.
 
 Example:
 ```
