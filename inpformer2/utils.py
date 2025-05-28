@@ -16,7 +16,6 @@ import os
 from functools import partial
 import math
 from tqdm import tqdm
-from aug_funcs import rot_img, translation_img, hflip_img, grey_img, rot90_img
 import torch.backends.cudnn as cudnn
 from adeval import  EvalAccumulatorCuda
 import tifffile
@@ -92,31 +91,6 @@ def setup_seed(seed):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-
-def augmentation(img):
-    img = img.unsqueeze(0)
-    augment_img = img
-    for angle in [-np.pi / 4, -3 * np.pi / 16, -np.pi / 8, -np.pi / 16, np.pi / 16, np.pi / 8, 3 * np.pi / 16,
-                  np.pi / 4]:
-        rotate_img = rot_img(img, angle)
-        augment_img = torch.cat([augment_img, rotate_img], dim=0)
-        # translate img
-    for a, b in [(0.2, 0.2), (-0.2, 0.2), (-0.2, -0.2), (0.2, -0.2), (0.1, 0.1), (-0.1, 0.1), (-0.1, -0.1),
-                 (0.1, -0.1)]:
-        trans_img = translation_img(img, a, b)
-        augment_img = torch.cat([augment_img, trans_img], dim=0)
-        # hflip img
-    flipped_img = hflip_img(img)
-    augment_img = torch.cat([augment_img, flipped_img], dim=0)
-    # rgb to grey img
-    greyed_img = grey_img(img)
-    augment_img = torch.cat([augment_img, greyed_img], dim=0)
-    # rotate img in 90 degree
-    for angle in [1, 2, 3]:
-        rotate90_img = rot90_img(img, angle)
-        augment_img = torch.cat([augment_img, rotate90_img], dim=0)
-    augment_img = (augment_img[torch.randperm(augment_img.size(0))])
-    return augment_img
 
 def modify_grad(x, inds, factor=0.):
     # print(inds.shape)

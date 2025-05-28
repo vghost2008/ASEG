@@ -143,3 +143,5 @@ example_output*
 *.encrypt
 b10aoi_m
 log
+# work-dirs
+work_dirs/
