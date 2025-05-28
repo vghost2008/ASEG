@@ -99,7 +99,7 @@ def main(args):
     # Data Preparation
     train_dataloader, test_dataloader = build_datasets(args)
 
-    model, optimizer = build_model(args)
+    model = build_model(args)
     if args.phase == 'train':
          # Model Initialization
         trainable = nn.ModuleList([model.bottleneck, model.decoder, model.aggregation, model.prototype_token])
