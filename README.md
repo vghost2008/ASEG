@@ -56,14 +56,14 @@ usage python ./tools/train.py work_dir datadir_root -d dataset_name --gpu gpu_id
 
 Example:
 ```
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d can --gpu 0
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fabric --gpu 1
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 2
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d rice --gpu 3
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d sheet_metal --gpu 4
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d vial --gpu 5
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d wallplugs --gpu 6
-python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d walnuts --gpu 7
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d can --gpu 0
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fabric --gpu 1
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 2
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d rice --gpu 3
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d sheet_metal --gpu 4
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d vial --gpu 5
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d wallplugs --gpu 6
+python ./tools/train.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d walnuts --gpu 7
 ```
 
 ## evaluate
@@ -72,14 +72,14 @@ usage python ./tools/eval.py work_dir datadir_root -d dataset_name --gpu gpu_idx
 
 Example:
 ```
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d can --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fabric --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d rice --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d sheet_metal --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d vial --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d wallplugs --gpu 0
-python ./tools/eval.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d walnuts --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d can --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fabric --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d rice --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d sheet_metal --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d vial --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d wallplugs --gpu 0
+python ./tools/eval.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d walnuts --gpu 0
 ```
 
 evaluate will generate a threshold file which will be used in predict.
@@ -90,16 +90,16 @@ usage python ./tools/predict.py work_dir datadir_root -d dataset_name --gpu gpu_
 
 Example:
 ```
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d can --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fabric --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d rice --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d sheet_metal --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d vial --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d wallplugs --gpu 0
-python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d walnuts --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d can --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fabric --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d fruit_jelly --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d rice --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d sheet_metal --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d vial --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d wallplugs --gpu 0
+python ./tools/predict.py /home/user/ai/mldata1/MVTEC/workdir/aseg /home/user/ai/mldata1/MVTEC/ -d walnuts --gpu 0
 ```
 
-The final prediction results will be saved in {work_dir}_tiff/predict, the above example will be saved in /home/wj/ai/mldata1/MVTEC/workdir/aseg_tiff/predict.
+The final prediction results will be saved in {work_dir}_tiff/predict, the above example will be saved in /home/user/ai/mldata1/MVTEC/workdir/aseg_tiff/predict.
 
 
