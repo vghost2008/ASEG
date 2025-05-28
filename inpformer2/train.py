@@ -88,7 +88,6 @@ def build_model(args):
     model = INP_Former(encoder=encoder, bottleneck=Bottleneck, aggregation=INP_Extractor, decoder=INP_Guided_Decoder,
                              target_layers=target_layers,  remove_class_token=True, fuse_layer_encoder=fuse_layer_encoder,
                              fuse_layer_decoder=fuse_layer_decoder, prototype_token=INP)
-    model = model.to(device)
         
     return model
 
@@ -123,11 +122,13 @@ def main(args):
             if os.path.exists(os.path.join(args.save_dir, args.save_name, args.item, 'latest_model.pth')):  # 该类别已训练完成
                 return
             if os.path.exists(os.path.join(args.save_dir, args.save_name, args.item, 'best_model.pth')):    # 该类别未训练完成
-                model.load_state_dict(torch.load(os.path.join(args.save_dir, args.save_name, args.item, 'best_model.pth')), strict=True)
+                model.load_state_dict(torch.load(os.path.join(args.save_dir, args.save_name, args.item, 'best_model.pth'), map_location='cpu'), strict=True)
         # Train
         max_seg_f1 = 0
         max_seg_f1_epoch = 0
         max_seg_f1_results = None
+
+        model.to(device)
         
         for epoch in range(args.total_epochs):
             model.train()
