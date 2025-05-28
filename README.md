@@ -2,7 +2,7 @@
 
 ## prepare dataset
 
-- download fg mask from [Download link](https://onebox.boe.com.cn/l/2FglwP) 提取码: yrij
+- download fg mask from [Download link](https://onebox.boe.com.cn/l/2FglwP) password: yrij
 - download dtd data from [Download link](https://www.robots.ox.ac.uk/~vgg/data/dtd/)
 - make ***datadir_root*** directory
 - unpack dtd to ***datadir_root*** directory
@@ -49,6 +49,11 @@ tree datadir_root
 
 usage python ./tools/train.py work_dir datadir_root -d dataset_name --gpu gpu_idx
 
+-work_dir: directory to save checkpoint, log and other temporary files.
+-datadir_root: the dataset directory.
+-dataset_name: subdatasets name, for example can, fruit_jelly, et.
+-gpu: gpu idx.
+
 Example:
 ```
 python ./tools/train.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d can --gpu 0
@@ -94,3 +99,7 @@ python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mld
 python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d wallplugs --gpu 0
 python ./tools/predict.py /home/wj/ai/mldata1/MVTEC/workdir/aseg /home/wj/ai/mldata1/MVTEC/ -d walnuts --gpu 0
 ```
+
+The final prediction results will be saved in {work_dir}_tiff/predict, the above example will be saved in /home/wj/ai/mldata1/MVTEC/workdir/aseg_tiff/predict.
+
+
