@@ -26,8 +26,6 @@ from utils import get_gaussian_kernel, cal_anomaly_maps
 
 def set_model(args):
     setup_seed(1)
-    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-
     encoder = vit_encoder.load(args.encoder)
     if 'small' in args.encoder:
         embed_dim, num_heads = 384, 6
@@ -74,11 +72,9 @@ def set_model(args):
     model = INP_Former(encoder=encoder, bottleneck=Bottleneck, aggregation=INP_Extractor, decoder=INP_Guided_Decoder,
                              target_layers=target_layers,  remove_class_token=True, fuse_layer_encoder=fuse_layer_encoder,
                              fuse_layer_decoder=fuse_layer_decoder, prototype_token=INP)
-    model = model.to(device)
-
+    
     print(f'use {args.pretrained_model_path}/{args.item} best model')
-    model.load_state_dict(torch.load(osp.join(args.pretrained_model_path, args.item, 'best_model.pth')))
-    model.eval()
+    model.load_state_dict(torch.load(osp.join(args.pretrained_model_path, args.item, 'best_model.pth'), map_location='cpu'))
 
     return model
 
@@ -127,6 +123,8 @@ def save_tiff(anomaly_map, save_root, img_path, thresholded=None):
 
 def pred_images(args, model, thr:float=None):
     device = f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'
+    model.to(device)
+    model.eval()
     img_paths = get_image_path(osp.join(args.data_path, args.item, "test_private"))
     img_paths.extend(get_image_path(osp.join(args.data_path, args.item, "test_private_mixed")))
 
